@@ -9,5 +9,5 @@ __license__ = 'MIT'
 __description__ = 'A parser for Japanese number (Kanji, arabic) in the natulal language.'
 
 
-from japanese_numbers.parser.to_arabic_parser import to_arabic
+from japanese_numbers.parser.to_arabic_parser import to_arabic, to_arabic_numbers
 

@@ -72,3 +72,6 @@ def to_arabic(val):
 
   return results
 
+
+def to_arabic_numbers(val):
+  return tuple(x.number for x in to_arabic(val))

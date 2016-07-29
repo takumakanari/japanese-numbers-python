@@ -7,7 +7,7 @@ from nose.tools import eq_
 
 from tests import compare_result
 
-from japanese_numbers import to_arabic
+from japanese_numbers import to_arabic, to_arabic_numbers
 from japanese_numbers.result import ParsedResult as R
 
 
@@ -140,7 +140,7 @@ class Test_to_arabic(TestCase):
     ret = to_arabic('1万')
     eq_(len(ret), 1)
     compare_result(ret[0], R(number=10000, text='1万', index=0))
-  
+
     ret = to_arabic('5百万')
     eq_(len(ret), 1)
     compare_result(ret[0], R(number=5000000, text='5百万', index=0))
@@ -162,3 +162,10 @@ class Test_to_arabic(TestCase):
     compare_result(ret[2], R(number=2000000, text='200万', index=59))
 
 
+class Test_to_arabic_numbers(TestCase):
+
+  def test_parse_multiple_numbers(self):
+    ret = to_arabic_numbers('一を聞いて十を知る。')
+    eq_(len(ret), 2)
+    eq_(ret[0], 1)
+    eq_(ret[1], 10)
