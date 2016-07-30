@@ -24,7 +24,9 @@ Or installing github directly:
 
 ## Usage
 
-Function `to_arabic` is almost stable. It returns An array of *[japanese_numbers.result.ParsedResult]* is returned basically.
+Function `to_arabic` and `to_arabic_numbers` are almost stable.
+
+`to_arabic` returns An array of *[japanese_numbers.result.ParsedResult]*.
 
 ```python
 import japanese_numbers
@@ -36,6 +38,7 @@ japanese_numbers.to_arabic('一を聞いて十を知る。')
 # => [<ParsedResult 1 : "一" index=0>, <ParsedResult 10 : "十" index=5>]
 
 ```
+
 
 Then you can see a numeric value (and others) in the instance of *ParsedResult* like as follows:
 
@@ -51,4 +54,24 @@ result[1].text   # => '十'
 result[1].index  # => 5
 
 ```
+
+`to_arabic_numbers` returns a tuple of numbers directly.
+
+```python
+import japanese_numbers
+
+japanese_numbers.to_arabic_numbers('一を聞いて十を知る。')
+# => (1, 10)
+```
+
+
+### TODO
+
+- support float/double types
+- support negative types
+
+
+### Patch
+
+Welcome!
 

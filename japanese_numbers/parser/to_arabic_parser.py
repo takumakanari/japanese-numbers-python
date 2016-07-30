@@ -75,3 +75,4 @@ def to_arabic(val):
 
 def to_arabic_numbers(val):
   return tuple(x.number for x in to_arabic(val))
+
