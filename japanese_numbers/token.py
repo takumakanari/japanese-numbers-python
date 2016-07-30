@@ -2,38 +2,35 @@
 # -*- encoding:utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
-from japanese_numbers.kind import *
+from japanese_numbers.kind import (  # noqa
+  UNIT_KIND,
+  NUMBERS_KIND,
+  MULTIPLES_KIND,
+  NUMERIC_KIND
+)
 
 
-UNITS = {
-  '十' : 10,
-  '百' : 100,
-  '千' : 1000,
+UNITS = {  # noqa
+  '十': 10,
+  '百': 100,
+  '千': 1000
 }
 
-MULTIPLES = {
-  '万' : 10000,
-  '億' : 100000000,
-  '兆' : 1000000000000
+MULTIPLES = {  # noqa
+  '万': 10000,
+  '億': 100000000,
+  '兆': 1000000000000
 }
 
-NUMBERS = {
-  '一' : 1,
-  '二' : 2,
-  '三' : 3,
-  '四' : 4,
-  '五' : 5,
-  '六' : 6,
-  '七' : 7,
-  '八' : 8,
-  '九' : 9,
-  '十' : 10
+NUMBERS = {  # noqa
+  x[1]: x[0] + 1
+  for x in enumerate(('一', '二', '三', '四', '五', '六', '七', '八', '九', '十'))
 }
 
 NUNERICS = map(str, xrange(0, 10))
 
-TRANSLATE_NUMBERS = {
-  x[1] : x[0]
+TRANSLATE_NUMBERS = {  # noqa
+  x[1]: x[0]
   for x in enumerate(('〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'))
 }
 
@@ -85,3 +82,4 @@ class Tokenized(object):
     for src, dest in TRANSLATE_NUMBERS.items():
       val_ = val_.replace(src, str(dest))
     return val_
+

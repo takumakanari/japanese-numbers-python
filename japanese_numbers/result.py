@@ -16,4 +16,4 @@ class ParsedResult(object):
 
   def __str__(self):
     return '<{0} {1[number]} : "{1[text]}" index={1[index]}>'. \
-      format(self.__class__.__name__, self.__dict__).encode('utf8')
+           format(self.__class__.__name__, self.__dict__).encode('utf8')
