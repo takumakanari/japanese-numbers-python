@@ -7,7 +7,7 @@ from japanese_numbers.parser.to_arabic_parser import (  # noqa
   to_arabic_numbers
 )
 
-__japanese_numbers__ = 'japanese_numbers'
+__japanese_numbers__ = 'japanese-numbers-python'
 __version__ = '0.1.0'
 __author__ = 'Takumakanari'
 __license__ = 'MIT'
