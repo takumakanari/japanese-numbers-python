@@ -12,13 +12,24 @@ from japanese_numbers.kind import (  # noqa
 )
 
 
+def _each(values):
+  s = len(values)
+  for i, c in enumerate(values):
+    nc = values[i + 1] if i + 1 < s else None
+    yield (c, nc)
+
+
 def _collect_numerics(val, pos):
-  stack = []
-  for c in val[pos:]:
+  stack, pos_size = ([], 0)
+  for c, nc in _each(val[pos:]):
+    comma = c == ','
     if c not in NUMERICS:
-      break
-    stack.append(c)
-  return int(''.join(stack)), len(stack)
+      if not comma or nc not in NUMERICS:
+        break
+    if not comma:
+      stack.append(c)
+    pos_size += 1
+  return int(''.join(stack)), pos_size
 
 
 def to_arabic(val, encode='utf8'):
