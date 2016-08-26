@@ -3,7 +3,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from japanese_numbers.result import ParsedResult
-from japanese_numbers.token import Tokenized, NUNERICS
+from japanese_numbers.token import Tokenized, NUMERICS
 from japanese_numbers.kind import (  # noqa
   UNIT_KIND,
   NUMBERS_KIND,
@@ -15,7 +15,7 @@ from japanese_numbers.kind import (  # noqa
 def _collect_numerics(val, pos):
   stack = []
   for c in val[pos:]:
-    if c not in NUNERICS:
+    if c not in NUMERICS:
       break
     stack.append(c)
   return int(''.join(stack)), len(stack)
