@@ -56,13 +56,16 @@ class Test_to_arabic(TestCase):
     compare_result(ret[1], R(number=50000, text='50,000', index=24))
 
   def test_kanji_with_comma(self):
-    # FIXME test failure
     ret = to_arabic('二,三,四')
-    print ret
     eq_(len(ret), 3)
     compare_result(ret[0], R(number=2, text='二', index=0))
     compare_result(ret[1], R(number=3, text='三', index=2))
     compare_result(ret[2], R(number=4, text='四', index=4))
+
+    ret = to_arabic('テスト、二三四,十一')
+    eq_(len(ret), 2)
+    compare_result(ret[0], R(number=234, text='二三四', index=4))
+    compare_result(ret[1], R(number=11, text='十一', index=8))
 
   def test_kanji_only_10(self):
     ret = to_arabic('十一')
