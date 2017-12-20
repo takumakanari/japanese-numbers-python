@@ -2,8 +2,8 @@
 
 A parser for Japanese number (Kanji, arabic) in the natural language.
 
-Japanese-numbers finds any numbers in the natural language, and convert to arabic.
-The followings are an example patterns what can be parsed.
+The module **japanese_numbers** finds any numbers in the natural language, and converts to arabic numerals.
+The followings are example patterns what can be parsed.
 
 - 二千万百一円
 - 5百万
@@ -64,6 +64,16 @@ japanese_numbers.to_arabic_numbers('一を聞いて十を知る。')
 # => (1, 10)
 ```
 
+### Charsets
+
+Both `to_arabic_numbers`, `to_arabic` get `encode` option to specify encode of input.
+
+It's *utf8* by default, if you put non-unicode string into functions, it will be converted to unicode by using its encode first.
+
+```python
+japanese_numbers.to_arabic_numbers('一を聞いて十を知る。')  # utf8 by default
+japanese_numbers.to_arabic('一を聞いて十を知る。', encode='eucjp')  # set another charset
+```
 
 ### TODO
 
@@ -74,4 +84,3 @@ japanese_numbers.to_arabic_numbers('一を聞いて十を知る。')
 ### Patch
 
 Welcome!
-
