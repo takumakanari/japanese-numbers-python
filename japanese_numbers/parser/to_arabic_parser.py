@@ -21,7 +21,7 @@ def _collect_numerics(val, pos):
   return int(''.join(stack)), len(stack)
 
 
-def to_arabic(val):
+def to_arabic(val, encode='utf8'):
   stacks, numbers, texts, analyzing, index = ([], [], [], False, -1)
   results = []
 
@@ -30,7 +30,8 @@ def to_arabic(val):
                                 number=sum(stacks) + sum(numbers),
                                 index=index))
 
-  token = Tokenized(val)
+  decoded_val = val if isinstance(val, unicode) else val.decode(encode)
+  token = Tokenized(decoded_val)
 
   while token.has_next():
     kind, num = (token.kind, token.num_of_kind)
@@ -78,6 +79,6 @@ def to_arabic(val):
   return results
 
 
-def to_arabic_numbers(val):
-  return tuple(x.number for x in to_arabic(val))
+def to_arabic_numbers(val, encode='utf8'):
+  return tuple(x.number for x in to_arabic(val, encode=encode))
 
