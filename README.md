@@ -13,13 +13,7 @@ The followings are example patterns what can be parsed.
 
 ### Installation
 
-Currently, you can install from PYPI by using pip:
-
-    pip install japanese-numbers-python
-
-Or installing github directly:
-
-    pip install git+git://github.com/takumakanari/japanese-numbers-python.git
+pip install japanese-numbers-python
 
 
 ## Usage
