@@ -1,9 +1,8 @@
 from setuptools import setup, find_packages
-import japanese_numbers
 
 setup(
-  name = japanese_numbers.__japanese_numbers__,
-  version = japanese_numbers.__version__,
+  name = 'japanese-numbers-python',
+  version = '0.1.1',
   packages = find_packages(
     '.',
     exclude = [
@@ -13,11 +12,11 @@ setup(
   package_dir = {
     '' : '.'
   },
-  author = japanese_numbers.__author__,
+  author = 'Takumakanari',
   author_email = 'chemtrails.t@gmail.com',
   maintainer = 'Takumakanari',
   maintainer_email = 'chemtrails.t@gmail.com',
-  description = japanese_numbers.__description__,
+  description = 'A parser for Japanese number (Kanji, arabic) in the natulal language.',
   classifiers = [
     'Development Status :: 4 - Beta',
     'Environment :: Web Environment',
@@ -27,9 +26,10 @@ setup(
     'Programming Language :: Python',
     'Programming Language :: Python :: 2',
     'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
     'Topic :: Software Development :: Libraries :: Python Modules',
   ],
-  install_requires = ['nose'],
+  install_requires = ['future>=0.16.0', 'nose'],
   license = 'MIT',
   keywords = 'japanese numbers parser kanji arabic',
   zip_safe = True,

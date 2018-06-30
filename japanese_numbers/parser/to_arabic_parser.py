@@ -2,6 +2,9 @@
 # -*- encoding:utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
+
+from past.builtins import xrange
+
 from japanese_numbers.result import ParsedResult
 from japanese_numbers.token import Tokenized, NUMERICS
 from japanese_numbers.kind import (  # noqa
@@ -10,6 +13,14 @@ from japanese_numbers.kind import (  # noqa
   MULTIPLES_KIND,
   NUMERIC_KIND
 )
+
+
+# Compat with py3
+import sys
+
+PY3 = sys.version_info.major == 3
+if PY3:
+  unicode = str
 
 
 def _collect_numerics(val, pos):
