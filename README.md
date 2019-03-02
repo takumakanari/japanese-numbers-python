@@ -1,5 +1,7 @@
 # japanese_numbers
 
+[![CircleCI](https://circleci.com/gh/takumakanari/japanese-numbers-python/tree/master.svg?style=svg)](https://circleci.com/gh/takumakanari/japanese-numbers-python/tree/master)
+
 A parser for Japanese number (Kanji, arabic) in the natural language.
 
 The module **japanese_numbers** finds any numbers in the natural language, and converts to arabic numerals.

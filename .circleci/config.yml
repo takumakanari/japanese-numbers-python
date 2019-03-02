@@ -1,0 +1,46 @@
+version: 2
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test-3.6
+      - test-3.7
+# TODO      - test-2.7
+
+jobs:
+  test-3.6: &template
+    docker:
+      - image: circleci/python:3.6
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "setup.py" }}
+            - v1-dependencies-
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -e ./
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "setup.py" }}
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            nosetests -vvv
+
+  test-3.7:
+    <<: *template
+    docker:
+      - image: circleci/python:3.7
+
+#  test-2.7:
+#    <<: *template
+#    docker:
+#      - image: circleci/python:2.7
+
