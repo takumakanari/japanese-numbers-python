@@ -54,6 +54,16 @@ class Test_to_arabic(TestCase):
     eq_(len(ret), 1)
     compare_result(ret[0], R(number=81, text='八十一', index=0))
 
+  def test_multibyte_numeric_only(self):
+    ret = to_arabic('１２３４５６７８９０')
+    eq_(len(ret), 1)
+    compare_result(ret[0], R(number=1234567890, text='１２３４５６７８９０', index=0))
+
+    ret = to_arabic('１を聞いて１０を知る。')
+    eq_(len(ret), 2)
+    compare_result(ret[0], R(number=1, text='１', index=0))
+    compare_result(ret[1], R(number=10, text='１０', index=5))
+
   def test_kanji_only_100(self):
     ret = to_arabic('百八十一')
     eq_(len(ret), 1)
@@ -153,6 +163,11 @@ class Test_to_arabic(TestCase):
     ret = to_arabic('五〇五号室')
     eq_(len(ret), 1)
     compare_result(ret[0], R(number=505, text='五〇五', index=0))
+
+  def test_numeric_chain2(self):
+    ret = to_arabic('５０５号室')
+    eq_(len(ret), 1)
+    compare_result(ret[0], R(number=505, text='５０５', index=0))
 
   def test_parsing_text(self):
     ret = to_arabic('その形は3-50個ほどの銀河が集まった銀河群と呼ばれる小規模な集団に始まり、フラクタル状の階層的段階の集団を構成する。200万光年程度の狭い領域に纏まった銀河群はコンパクト銀河群と呼ばれる')
