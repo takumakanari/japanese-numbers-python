@@ -31,9 +31,14 @@ NUMBERS = {  # noqa
 
 NUMERICS = list(map(str, xrange(0, 10)))
 
-TRANSLATE_NUMBERS = {  # noqa
+KANJI_NUMBER_MAP = {  # noqa
   x[1]: x[0]
   for x in enumerate(('〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'))
+}
+
+MULTIBYTE_NUMBER_MAP = {  # noqa
+  x[1]: x[0]
+  for x in enumerate(('０', '１', '２', '３', '４', '５', '６', '７', '８', '９'))
 }
 
 
@@ -81,7 +86,9 @@ class Tokenized(object):
   @classmethod
   def _convert_kanji_to_arabic(cls, val):
     val_ = val
-    for src, dest in TRANSLATE_NUMBERS.items():
+    for src, dest in KANJI_NUMBER_MAP.items():
+      val_ = val_.replace(src, str(dest))
+    for src, dest in MULTIBYTE_NUMBER_MAP.items():
       val_ = val_.replace(src, str(dest))
     return val_
 
